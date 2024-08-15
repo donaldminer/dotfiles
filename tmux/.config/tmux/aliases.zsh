@@ -1,0 +1,5 @@
+alias txs='tmuxifier load-session'
+alias txw='tmuxifier load-window'
+alias txn='tmuxifier new-session'
+alias txl='tmuxifier list-sessions'
+alias txe='tmuxifier edit-session'
