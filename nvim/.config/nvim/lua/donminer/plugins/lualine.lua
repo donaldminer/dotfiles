@@ -54,6 +54,7 @@ return {
 						cond = lazy_status.has_updates,
 						color = { fg = theme.ui.fg },
 					},
+					{ "copilot", show_colors = true },
 					{ "encoding" },
 					{ "fileformat" },
 					{ "filetype" },

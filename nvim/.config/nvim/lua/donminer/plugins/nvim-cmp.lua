@@ -14,6 +14,7 @@ return {
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"rafamadriz/friendly-snippets", -- useful snippets
 		"onsails/lspkind.nvim", -- vs-code like pictograms
+		"github/copilot.vim",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -50,6 +51,7 @@ return {
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
 				{ name = "codeium" }, -- ai snippets
+				{ name = "copilot" },
 			}),
 
 			-- configure lspkind for vs-code like pictograms in completion menu
@@ -57,7 +59,7 @@ return {
 				format = lspkind.cmp_format({
 					maxwidth = 50,
 					ellipsis_char = "...",
-					symbol_map = { Codeium = "" },
+					symbol_map = { Codeium = "", Copilot = "" },
 				}),
 			},
 		})

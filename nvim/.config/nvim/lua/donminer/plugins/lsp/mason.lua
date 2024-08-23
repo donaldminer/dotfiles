@@ -35,12 +35,12 @@ return {
 				"tailwindcss",
 				"lua_ls",
 				"pyright",
-				"angularls",
 				"omnisharp",
 				"clangd",
 				"cmake",
 				"ltex",
 				"jdtls",
+				"jsonls",
 			},
 		})
 
