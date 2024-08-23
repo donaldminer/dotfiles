@@ -10,7 +10,7 @@ This is a partial config for my current workspace dotfiles, more will be added i
 - I am using [URXVT with true color support](https://aur.archlinux.org/packages/rxvt-unicode-truecolor-wide-glyphs) as my terminal.
 ### Zsh
 - The structure of the config files for zsh are based on [Zach Holman's](https://github.com/holman) dotfiles structure.
-- Zinit is used for plugin management.
+- Zinit is used for plugin management.m
 - Powerlevel10k is for prompt configuration.
 ### Theme
-- All color schemes are from (rebelot/kanagawa.nvim)[https://github.com/rebelot/kanagawa.nvim] specifically the Dragon theme.
+- All color schemes are from [rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) specifically the Dragon theme.
