@@ -2,7 +2,7 @@ URxvt.perl-ext-common:	default,resize-font,
 URxvt.scrollBar:	false 
 URxvt.iso14755:	false
 URxvt.iso14755_52:	false
-URxvt.font:	xft:JetBrainsMonoNerdFontMono-SemiBold:size=30  
+URxvt.font:	xft:JetBrainsMonoNerdFontMono-SemiBold:size=23
 URxvt.letterSpace:  0
 !! URxvt Appearance
 URxvt.lineSpace: 0
