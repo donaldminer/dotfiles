@@ -41,6 +41,7 @@ bindsym $mod+z exec zoom
 bindsym $mod+s exec steam 
 bindsym $mod+n exec obsidian
 bindsym $mod+Shift+d exec rofi -show combi 
+#bindsym $mod+Shift+d exec dmenu_run
 
 # TILES
 #
@@ -166,7 +167,7 @@ bindsym $mod+F3 exec xbacklight +10
 bindsym $mod+F2 exec xbacklight -10
 
 # Monitor Detction
-exec --no-startup-id ~/.screenlayout/set_monitor.sh 
+exec --no-startup-id ~/.screenlayout/startup.sh 
 
 #Wallpaper
 exec --no-startup-id ~/.fehbg &
