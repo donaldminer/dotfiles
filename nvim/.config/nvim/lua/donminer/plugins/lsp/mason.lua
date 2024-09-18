@@ -29,7 +29,7 @@ return {
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
-				"tsserver",
+				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -61,7 +61,7 @@ return {
 				"cppdbg",
 				"python",
 			},
-			automatic_installation = false,
+			automatic_installation = true,
 			handlers = {},
 		})
 	end,
