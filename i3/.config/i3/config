@@ -35,7 +35,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # Terminal and application shortcuts 
-bindsym $mod+Return exec urxvt 
+#bindsym $mod+Return exec urxvt 
+bindsym $mod+Return exec kitty
 bindsym $mod+g exec google-chrome-stable
 bindsym $mod+z exec zoom
 bindsym $mod+s exec steam 
@@ -175,3 +176,6 @@ exec --no-startup-id ~/.fehbg &
 
 #Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+#Picom Compositor
+exec --no-startup-id -b picom
