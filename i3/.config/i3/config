@@ -37,7 +37,8 @@ floating_modifier $mod
 # Terminal and application shortcuts 
 #bindsym $mod+Return exec urxvt 
 bindsym $mod+Return exec kitty
-bindsym $mod+g exec google-chrome-stable
+# bindsym $mod+g exec google-chrome-stable
+bindsym $mod+g exec firefox -ProfileManager 
 bindsym $mod+z exec zoom
 bindsym $mod+s exec flameshot gui 
 bindsym $mod+n exec obsidian

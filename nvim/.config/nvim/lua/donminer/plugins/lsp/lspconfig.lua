@@ -1,7 +1,5 @@
 return {
-
 	{
-
 		-- for lsp features in code cells / embedded code
 		"jmbuhr/otter.nvim",
 		dev = false,
@@ -27,15 +25,10 @@ return {
 			{ "folke/neodev.nvim", opts = {} },
 		},
 		config = function()
-			-- import lspconfig plugin
 			local lspconfig = require("lspconfig")
-
-			-- import mason_lspconfig plugin
+			local configs = require("lspconfig.configs")
 			local mason_lspconfig = require("mason-lspconfig")
-
-			-- import cmp-nvim-lsp plugin
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 			local keymap = vim.keymap -- for conciseness
 
 			vim.api.nvim_create_autocmd("LspAttach", {
@@ -74,10 +67,10 @@ return {
 					keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
 					opts.desc = "Go to previous diagnostic"
-					keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+					keymap.set("n", "[d", vim.diagnostic.get_prev, opts) -- jump to previous diagnostic in buffer
 
 					opts.desc = "Go to next diagnostic"
-					keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+					keymap.set("n", "]d", vim.diagnostic.get_next, opts) -- jump to next diagnostic in buffer
 
 					opts.desc = "Show documentation for what is under cursor"
 					keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -95,14 +88,71 @@ return {
 			local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
 			for type, icon in pairs(signs) do
 				local hl = "DiagnosticSign" .. type
-				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+				vim.diagnostic.config({
+					virtual_text = false,
+					signs = {
+						active = {
+							{ name = hl, text = icon },
+						},
+					},
+				})
 			end
+			vim.lsp.config["lua_ls"] = {
+				capabilities = capabilities,
+				cmd = { "lua-language-server" },
+				filetypes = { "lua" },
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" }, -- make the language server recognize "vim" global
+						},
+						completion = {
+							callSnippet = "Replace", -- use "Replace" for snippets
+						},
+					},
+				},
+			}
+			vim.lsp.config("omnisharp_mono", {
+				cmd = { "omnisharp-mono", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+				filetypes = { "cs" },
+				root_dir = lspconfig.util.root_pattern("*.csproj", "*.sln"),
+				capabilities = capabilities,
+				settings = {
+					omnisharp = {
+						useModernNet = false,
+						monoPath = vim.fn.system({ "which", "mono" }),
+					},
+					FormatOptions = {
+						OrganizeImports = true,
+					},
+					RenameOptions = {
+						RenameInComments = true,
+						RenameOverloads = true,
+						RenameInStrings = true,
+					},
+				},
+			})
+			vim.lsp.config("rust_analyzer", {
+				capabilities = capabilities,
+				filetypes = { "rust" },
+				cmd = { "rust-analyzer" },
+				settings = {
+					["rust-analyzer"] = {},
+				},
+			})
 
-			mason_lspconfig.setup_handlers({
+			--[[ mason_lspconfig.setup_handlers({
 				-- default handler for installed servers
 				function(server_name)
 					lspconfig[server_name].setup({
 						capabilities = capabilities,
+					})
+				end,
+				["rust_analyzer"] = function()
+					-- configure rust-analyzer server
+					lspconfig["rust_analyzer"].setup({
+						capabilities = capabilities,
+						filetypes = { "rust" },
 					})
 				end,
 				["svelte"] = function()
@@ -118,6 +168,30 @@ return {
 								end,
 							})
 						end,
+					})
+				end,
+				["omnisharp_mono"] = function()
+					-- configure omnisharp server
+					lspconfig["omnisharp_mono"].setup({
+						cmd = { "omnisharp-mono", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+						filetypes = { "cs" },
+						root_dir = lspconfig.util.root_pattern("*.csproj", "*.sln"),
+						capabilities = capabilities,
+						settings = {
+							omnisharp = {
+								useModernNet = false,
+								monoPath = vim.fn.system({ "which", "mono" }),
+							},
+							FormatOptions = {
+								OrganizeImports = true,
+							},
+							RenameOptions = {
+								RenameInComments = true,
+								RenameOverloads = true,
+								RenameInStrings = true,
+							},
+						},
+						on_attach = on_attach,
 					})
 				end,
 				["graphql"] = function()
@@ -160,7 +234,7 @@ return {
 						},
 					})
 				end,
-			})
+			}) ]]
 		end,
 	},
 }

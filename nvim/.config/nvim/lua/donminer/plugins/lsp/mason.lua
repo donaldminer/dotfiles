@@ -5,16 +5,13 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
 	},
+	lazy = false,
 	config = function()
-		-- import mason
 		local mason = require("mason")
-
-		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
-
 		local mason_nvim_dap = require("mason-nvim-dap")
+
 		-- enable mason and configure icons
 		mason.setup({
 			ui = {
@@ -36,12 +33,15 @@ return {
 				"lua_ls",
 				"pyright",
 				"omnisharp",
+				"omnisharp_mono",
 				"clangd",
 				"cmake",
-				"ltex",
+				"ltex-ls",
 				"jdtls",
 				"jsonls",
+				"rust_analyzer",
 			},
+			automatic_installation = true,
 		})
 
 		mason_tool_installer.setup({
@@ -53,13 +53,15 @@ return {
 				"pylint",
 				"eslint_d",
 				"debugpy",
+				"clang-format",
+				"cspell",
 			},
 		})
 
 		mason_nvim_dap.setup({
 			ensure_installed = {
-				"cppdbg",
-				"python",
+				"cpptools",
+				"debugpy",
 			},
 			automatic_installation = true,
 			handlers = {},

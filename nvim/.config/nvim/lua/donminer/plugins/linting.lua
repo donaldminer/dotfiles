@@ -12,6 +12,7 @@ return {
 			python = { "pylint" },
 			c = { "clangtidy" },
 			cpp = { "clangtidy" },
+			cs = { "cspell" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
